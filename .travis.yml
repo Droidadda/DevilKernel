@@ -1,4 +1,5 @@
 language: c
+install: travis_wait 30 mvn install
 sudo: false # only for faster builds
 script:
-  - sh cl.sh --no-capture
+  - sh cl.sh
