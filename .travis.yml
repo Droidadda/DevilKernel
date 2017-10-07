@@ -1,4 +1,4 @@
 language: c
 sudo: false # only for faster builds
 script:
-  - sh ci.sh
+  - sh cl.sh
