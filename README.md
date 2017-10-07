@@ -1,3 +1,5 @@
+Source Status: [![Travis](https://img.shields.io/travis/AryanKedare/DevilKernel.svg)](https://travis-ci.org/AryanKedare/DevilKernel)
+
 -------------------------------------------------------------------------------------
 
 Basic   | Spec Sheet
