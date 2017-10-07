@@ -86,8 +86,8 @@ extern BOOTMODE g_boot_mode;
 #define MIDI_QUEUE_LENGTH   32
 
 /* Default manufacturer and product string , overridden by userspace */
-#define MANUFACTURER_STRING "MediaTek"
-#define PRODUCT_STRING "MT65xx Android Phone"
+#define MANUFACTURER_STRING "Lenovo"
+#define PRODUCT_STRING "A7000-a"
 
 
 //#define USB_LOG "USB"
@@ -1560,6 +1560,10 @@ static int mass_storage_function_init(struct android_usb_function *f,
 
 static void mass_storage_function_cleanup(struct android_usb_function *f)
 {
+
+	struct mass_storage_function_config *config;
+ 	config = f->config;
+ 	fsg_common_put(config->common);
 	kfree(f->config);
 	f->config = NULL;
 }

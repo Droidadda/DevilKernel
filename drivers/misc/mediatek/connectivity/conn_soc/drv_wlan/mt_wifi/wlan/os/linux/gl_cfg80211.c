@@ -12,9 +12,6 @@
 /*
 ** Log: gl_cfg80211.c
 **
-** 01 15 2017 daniel_hk (https://github.com/daniel_hk)
-** Handle the actural channel list in mtk_cfg80211_vendor_get_channel_list()
-**
 ** 09 05 2013 cp.wu
 ** correct length to pass to wlanoidSetBssid()
 **
@@ -35,6 +32,8 @@
 ** 08 30 2012 chinglan.wang
 ** [ALPS00349664] [6577JB][WIFI] Phone can not connect to AP secured with AES via WPS in 802.11n Only
 ** .
+ *
+**
 */
 
 /*******************************************************************************
@@ -3043,20 +3042,20 @@ nla_put_failure:
 
 int mtk_cfg80211_vendor_get_channel_list(struct wiphy *wiphy, struct wireless_dev *wdev, const void *data, int data_len)
 {
-#define MAX_CHANNELS	32
+	#define MAX_CHANNELS	32
 	P_GLUE_INFO_T prGlueInfo;
 	struct nlattr *attr;
 	UINT_32 band = 0;
 	UINT_8 ucNumOfChannel, i, j;
 	RF_CHANNEL_INFO_T aucChannelList[MAX_CHANNELS];
 	UINT_32 num_channel;
-	wifi_channel channels[MAX_CHANNELS];
+	wifi_channel channels[MAX_CHANNELS]; 
 	struct sk_buff *skb;
 
 	ASSERT(wiphy);
 	ASSERT(wdev);
 	if ((data == NULL) || !data_len)
-		return -EINVAL;
+	return -EINVAL;
 	DBGLOG(REQ, INFO, "%s for vendor command: data_len=%d\n", __func__, data_len);
 
 	attr = (struct nlattr *)data;
@@ -3095,7 +3094,8 @@ int mtk_cfg80211_vendor_get_channel_list(struct wiphy *wiphy, struct wireless_de
 	}
 	num_channel = j;
 
-	skb = cfg80211_vendor_cmd_alloc_reply_skb(wiphy, sizeof(wifi_channel) * num_channel);
+	skb = cfg80211_vendor_cmd_alloc_reply_skb(wiphy, sizeof(wifi_channel) * num_channel); 
+
 	if (!skb) {
 		DBGLOG(REQ, TRACE, "%s allocate skb failed\n", __func__);
 		return -ENOMEM;

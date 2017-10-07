@@ -3,7 +3,7 @@
  *
  * Error Recovery Procedures (ERP).
  *
- * Copyright IBM Corp. 2002, 2016
+ * Copyright IBM Corp. 2002, 2015
  */
 
 #define KMSG_COMPONENT "zfcp"
@@ -1278,7 +1278,6 @@ static void zfcp_erp_action_cleanup(struct zfcp_erp_action *act, int result)
 	case ZFCP_ERP_ACTION_REOPEN_LUN:
 		if (!(act->status & ZFCP_STATUS_ERP_NO_REF))
 			scsi_device_put(sdev);
-		zfcp_erp_try_rport_unblock(port);
 		break;
 
 	case ZFCP_ERP_ACTION_REOPEN_PORT:
@@ -1289,7 +1288,7 @@ static void zfcp_erp_action_cleanup(struct zfcp_erp_action *act, int result)
 		 */
 		if (act->step != ZFCP_ERP_STEP_UNINITIALIZED)
 			if (result == ZFCP_ERP_SUCCEEDED)
-				zfcp_erp_try_rport_unblock(port);
+				zfcp_scsi_schedule_rport_register(port);
 		/* fall through */
 	case ZFCP_ERP_ACTION_REOPEN_PORT_FORCED:
 		put_device(&port->dev);

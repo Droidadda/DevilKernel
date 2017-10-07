@@ -1277,7 +1277,7 @@ static ssize_t tun_put_user(struct tun_struct *tun,
 	int vnet_hdr_sz = 0;
 
 	if (tun->flags & TUN_VNET_HDR)
-		vnet_hdr_sz = ACCESS_ONCE(tun->vnet_hdr_sz);
+		vnet_hdr_sz = tun->vnet_hdr_sz;
 
 	if (!(tun->flags & TUN_NO_PI)) {
 		if ((len -= sizeof(pi)) < 0)
@@ -2071,7 +2071,7 @@ static long __tun_chr_ioctl(struct file *file, unsigned int cmd,
 		break;
 
 	case TUNGETVNETHDRSZ:
-		vnet_hdr_sz = tun->vnet_hdr_sz;
+		vnet_hdr_sz = ACCESS_ONCE(tun->vnet_hdr_sz);
 		if (copy_to_user(argp, &vnet_hdr_sz, sizeof(vnet_hdr_sz)))
 			ret = -EFAULT;
 		break;

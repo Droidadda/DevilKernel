@@ -2,7 +2,7 @@
  * zfcp device driver
  * debug feature declarations
  *
- * Copyright IBM Corp. 2008, 2016
+ * Copyright IBM Corp. 2008, 2015
  */
 
 #ifndef ZFCP_DBF_H
@@ -16,6 +16,11 @@
 #define ZFCP_DBF_TAG_LEN       7
 
 #define ZFCP_DBF_INVALID_LUN	0xFFFFFFFFFFFFFFFFull
+
+enum zfcp_dbf_pseudo_erp_act_type {
+	ZFCP_PSEUDO_ERP_ACTION_RPORT_ADD = 0xff,
+	ZFCP_PSEUDO_ERP_ACTION_RPORT_DEL = 0xfe,
+};
 
 enum zfcp_dbf_pseudo_erp_act_type {
 	ZFCP_PSEUDO_ERP_ACTION_RPORT_ADD = 0xff,
@@ -282,30 +287,6 @@ struct zfcp_dbf {
 	struct zfcp_dbf_san		san_buf;
 	struct zfcp_dbf_scsi		scsi_buf;
 };
-
-/**
- * zfcp_dbf_hba_fsf_resp_suppress - true if we should not trace by default
- * @req: request that has been completed
- *
- * Returns true if FCP response with only benign residual under count.
- */
-static inline
-bool zfcp_dbf_hba_fsf_resp_suppress(struct zfcp_fsf_req *req)
-{
-	struct fsf_qtcb *qtcb = req->qtcb;
-	u32 fsf_stat = qtcb->header.fsf_status;
-	struct fcp_resp *fcp_rsp;
-	u8 rsp_flags, fr_status;
-
-	if (qtcb->prefix.qtcb_type != FSF_IO_COMMAND)
-		return false; /* not an FCP response */
-	fcp_rsp = (struct fcp_resp *)&qtcb->bottom.io.fcp_rsp;
-	rsp_flags = fcp_rsp->fr_flags;
-	fr_status = fcp_rsp->fr_status;
-	return (fsf_stat == FSF_FCP_RSP_AVAILABLE) &&
-		(rsp_flags == FCP_RESID_UNDER) &&
-		(fr_status == SAM_STAT_GOOD);
-}
 
 static inline
 void zfcp_dbf_hba_fsf_resp(char *tag, int level, struct zfcp_fsf_req *req)

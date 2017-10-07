@@ -545,12 +545,27 @@ config UID_CPUTIME
 	  this config include in kernel 3.18
 	  add this patch for kernel 3.10
 
+config POCKETMOD
+ 	bool "PocketMod for device wake modifications"
+ 	default y
+ 	help
+ 		Say Y here to enable PocketMod. Users can always
+ 		toggle this on/off from sysfs later (should they
+ 		want it)  
+
 config TI_TCA6418
     default n
     tristate "TCA6418 GPIO expander support"
     help
       If you say yes here you get support for Texas Instruments
       GPIO expander TCA6418.
+
+config THUNDERQUAKE_ENGINE_GPL
+   tristate "Vibrator Intensity Controller for MTK Vibrator"
+   default y
+   help
+   Vibrator Intensity Controller for MTK Vibrator v1.0
+
 
 source "drivers/misc/c2port/Kconfig"
 source "drivers/misc/eeprom/Kconfig"

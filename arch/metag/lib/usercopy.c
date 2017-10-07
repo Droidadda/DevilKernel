@@ -774,7 +774,7 @@ unsigned long raw_copy_from_user(void *pdst, const void __user *psrc,
 		__asm_copy_from_user_1(dst, src, retn);
 		n--;
 		if (retn)
-			return retn + n;
+			goto copy_exception_bytes;
 	}
 	if ((unsigned long) dst & 1) {
 		/* Worst case - byte copy */
@@ -782,14 +782,14 @@ unsigned long raw_copy_from_user(void *pdst, const void __user *psrc,
 			__asm_copy_from_user_1(dst, src, retn);
 			n--;
 			if (retn)
-				return retn + n;
+				goto copy_exception_bytes;
 		}
 	}
 	if (((unsigned long) src & 2) && n >= 2) {
 		__asm_copy_from_user_2(dst, src, retn);
 		n -= 2;
 		if (retn)
-			return retn + n;
+			goto copy_exception_bytes;
 	}
 	if ((unsigned long) dst & 2) {
 		/* Second worst case - word copy */
@@ -797,7 +797,7 @@ unsigned long raw_copy_from_user(void *pdst, const void __user *psrc,
 			__asm_copy_from_user_2(dst, src, retn);
 			n -= 2;
 			if (retn)
-				return retn + n;
+				goto copy_exception_bytes;
 		}
 	}
 
@@ -813,7 +813,7 @@ unsigned long raw_copy_from_user(void *pdst, const void __user *psrc,
 			__asm_copy_from_user_8x64(dst, src, retn);
 			n -= 8;
 			if (retn)
-				return retn + n;
+				goto copy_exception_bytes;
 		}
 	}
 
@@ -829,7 +829,7 @@ unsigned long raw_copy_from_user(void *pdst, const void __user *psrc,
 			__asm_copy_from_user_8x64(dst, src, retn);
 			n -= 8;
 			if (retn)
-				return retn + n;
+				goto copy_exception_bytes;
 		}
 	}
 #endif

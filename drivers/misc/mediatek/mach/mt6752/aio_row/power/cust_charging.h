@@ -31,8 +31,8 @@
 /*Begin, lenovo-sw wangxf14 modify for 2A charge at 20140903 */
 #define AC_CHARGER_CURRENT				CHARGE_CURRENT_2050_00_MA
 /*End, lenovo-sw wangxf14 modify for 2A charge at 20140903 */
-#define NON_STD_AC_CHARGER_CURRENT			CHARGE_CURRENT_500_00_MA
-#define CHARGING_HOST_CHARGER_CURRENT       CHARGE_CURRENT_650_00_MA
+#define NON_STD_AC_CHARGER_CURRENT			CHARGE_CURRENT_2050_00_MA
+#define CHARGING_HOST_CHARGER_CURRENT       CHARGE_CURRENT_1500_00_MA
 #define APPLE_0_5A_CHARGER_CURRENT          CHARGE_CURRENT_500_00_MA
 #define APPLE_1_0A_CHARGER_CURRENT          CHARGE_CURRENT_650_00_MA
 #define APPLE_2_1A_CHARGER_CURRENT          CHARGE_CURRENT_800_00_MA
@@ -40,7 +40,7 @@
 #define AC_CHARGER_CURRENT_LIMIT	              CHARGE_CURRENT_900_00_MA   //lenovo standard 0.3C
 /*End, lenovo-sw mahj2 modify for current limit at 20141113 */
 /*Begin, lenovo-sw mahj2 modify for input current limit at 20150106 */
-#define INPUT_CHARGER_CURRENT_LIMIT	              CHARGE_CURRENT_1800_00_MA
+#define INPUT_CHARGER_CURRENT_LIMIT	              CHARGE_CURRENT_2800_00_MA
 /*End, lenovo-sw mahj2 modify for input current limit at 20150106 */
 
 /* Precise Tunning */
