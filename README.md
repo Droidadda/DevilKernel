@@ -14,10 +14,7 @@ Camera  | 8MPx, LED Flash
 
 * Compilation
         
-        $ . build/devil.sh <= This Compiles Fresh Kernel 
-        $ . build/devilmakeclean.sh <= This Makes Source Clean 
-        $ . build/devilmakekernel.sh <= This Compiles Kernel 
-        
+        $ sh devil.sh         
 -------------------------------------------------------------------------------------
 
 This Kernel Is Based On Lenovo OSC 
