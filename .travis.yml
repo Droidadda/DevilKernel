@@ -1,0 +1,19 @@
+test:
+  script:
+  - git clone https://bitbucket.org/UBERTC/aarch64-linux-android-6.0-kernel.git aarch64-linux-android-6.0
+  - sh cl.sh
+
+staging:
+  type: deploy
+  script:
+  - exit
+  - exit
+  only:
+  - devil-osc-6.0-7.1.2
+
+production:
+  type: deploy
+  script:
+  - exit
+  only:
+  - devil-osc-6.0-7.1.2
