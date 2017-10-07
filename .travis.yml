@@ -17,3 +17,8 @@ production:
   - exit
   only:
   - devil-osc-6.0-7.1.2
+  
+  "language": "C",
+  "group": "stable",
+  "dist": "precise",
+  "os": "linux"
