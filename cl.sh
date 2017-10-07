@@ -37,10 +37,10 @@ export ARCH=arm64
 export SUBARCH=arm64
 export CONFIG_NO_ERROR_ON_MISMATCH=y
 export CROSS_COMPILE=aarch64-linux-android-
-JOBS=-j1
+JOBS=-j$(nproc)
 
 # change as per you want
-export PATH=/builds/aryankedare/android_kernel_devil_lenovo_aio_row/aarch64-linux-android-6.0/bin:$PATH
+export PATH=$PWD/aarch64-linux-android-6.0/bin:$PATH
 export KBUILD_BUILD_USER="aryankedare"
 export KBUILD_BUILD_HOST="devilsworkshop"
 DEVICE="aio_row"
