@@ -17,6 +17,8 @@
 
 clear
 
+git clone https://bitbucket.org/UBERTC/aarch64-linux-android-6.0-kernel.git aarch64-linux-android-6.0
+
 VAR=""
 BUILD_DATE=$(date +"%Y%m%d")
 IMAGE=$TREE/arch/arm64/boot/Image.gz-dtb
