@@ -1,6 +1,4 @@
 language: c
-
-deploy:
-  provider: exit
-  on:
-    branch: devil-osc-6.0-7.1.2
+sudo: false # only for faster builds
+script:
+  - sh ci.sh
