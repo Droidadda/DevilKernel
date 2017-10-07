@@ -32,4 +32,3 @@ This Can Boot All Marshmallow Roms And Even Nougat Roms Which Are Based On Marsh
 -----------------------------------------------------------------------------------
 
 -----------------------------------------------------------------------------------
-![DevilKernel-Marshmallow-Nougat](https://gitlab.com/aryankedare/DevilKernel-Marshmallow-Nougat/blob/master/devicebanner.png "BANNER")
