@@ -1,7 +1,6 @@
 language: c
 
 deploy:
-  provider: script
-  script: exit 
+  provider: exit
   on:
     branch: devil-osc-6.0-7.1.2
