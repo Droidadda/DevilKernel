@@ -1,5 +1,4 @@
 language: c
 sudo: false # only for faster builds
-bundler_args: --retry 5
 script:
-  - sh cl.sh
+  - echo "Please Clone The Source Code And Compile It Travis Will Give Time Runout Error"
